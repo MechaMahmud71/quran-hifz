@@ -1,0 +1,53 @@
+<div style="position: relative;height:100vh">
+  <div>
+    <h1 style="text-align: center; font-family: Roboto,sans-serif;">
+      {{title}}
+    </h1>
+    <button (click)="showSettings()">
+      settings
+    </button>
+  </div>
+
+  <h2 style="text-align: center; font-family: Roboto,sans-serif; margin: 20px;">
+    أعوذ بالله من الشيطان الرجيم
+  </h2>
+  <h2 style="text-align: center; font-family: Roboto,sans-serif; margin: 20px;">
+    بسم الله الرحمن الرحيم
+  </h2>
+
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <p class="modal-heading">Surah Number And Ayah Number</p>
+        <div class="modal-icon-container" (click)="hideModal()">
+          <i class='bx bx-x'></i>
+        </div>
+      </div>
+      <div class="modal-form-container">
+        <form action="" #surahAndAyahForm="ngForm" (ngSubmit)="onSubmit(surahAndAyahForm)" class="address-form">
+          <div class="form-container">
+            <input type="text" class="form-input" name="surah" placeholder="Enter the Surah Number" ngModel surah>
+            <input type="text" class="form-input" name="ayah" placeholder="Enter the Ayah Number " ngModel ayah>
+            <input type="number" class="form-input" name="repeat" placeholder="Number of Repitition" ngModel repeat>
+          </div>
+          <div class="button-container">
+            <button class="save-btn" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:relative">
+    <p style="text-align: center;color:green; font-size: 35px; line-height:2; max-height: 560px; overflow: scroll;">
+      {{ayahString}}</p>
+    <p style="color:black;text-align: center;">-{{DOMSurahString}}:{{DOMAyahString}}</p>
+    <audio controls="true" [loop]="isLoop" #audio style="display:none" [src]="url"></audio>
+  </div>
+
+  <div class="audio-control-btns">
+    <button (click)="playAudio()">Play Audio</button>
+    <button (click)="nextAudio()">Next Ayah</button>
+    <button (click)="prevAudio()">Prev Ayah</button>
+  </div>
+</div>
